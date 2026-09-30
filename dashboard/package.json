@@ -1,0 +1,7 @@
+{
+  "name": "amas-dashboard",
+  "private": true,
+  "scripts": { "build": "esbuild src/main.js --bundle --minify --format=iife --target=es2020 --outfile=static/app.js && node -e \"require('fs').copyFileSync('src/style.css','static/app.css')\"" },
+  "dependencies": { "3d-force-graph": "*", "three": "*", "three-spritetext": "*" },
+  "devDependencies": { "esbuild": "*" }
+}

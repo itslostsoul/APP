@@ -1,0 +1,64 @@
+================================================================
+  AMAS  |  Automated Malware Analysis Sandbox report
+================================================================
+  Sample     dummy_virus.sh
+  SHA-256    b6e4dd080ef857256c64af74ec52ee3dfedbf20cc45f6c0f8baeca74d020bf7f
+  Type       Shell script, 402 B
+  Analyzed   2026-09-30 12:47:06
+  Runtime    replay
+  Exit code  1
+
+VERDICT  Malicious   (risk score 75/100)
+----------------------------------------------------------------
+  [high    ] Accessed credential or system files  (+25)
+             /etc/passwd
+  [high    ] Tried to reach the network  (+20)
+             8.8.8.8:1025 (all blocked, the sandbox has no network)
+  [medium  ] Created hidden files or directories  (+15)
+             .hidden_payload
+  [low     ] Spawned 3 child processes  (+10)
+             mkdir -p /sandbox/.hidden_payload, ls -la /etc/passwd, ping -c 2 8.8.8.8
+  [info    ] Exited with code 1  (+5)
+             Non-zero exit status.
+
+BEHAVIOUR
+----------------------------------------------------------------
+  process     sh
+              Payload entry point: sh /tmp/payload.sh
+  process     mkdir
+              mkdir -p /sandbox/.hidden_payload
+  file        .hidden_payload  [blocked]
+              Created a hidden directory
+  process     ls
+              ls -la /etc/passwd
+  file        /etc/passwd
+              Opened for reading
+  process     ping
+              ping -c 2 8.8.8.8
+  network     AF_INET SOCK_DGRAM  [blocked]
+              Opened a network socket
+  network     AF_INET SOCK_RAW
+              Opened a network socket
+  network     AF_INET6 SOCK_DGRAM  [blocked]
+              Opened a network socket
+  network     8.8.8.8:1025  [blocked]
+              Outbound connection attempt
+
+INDICATORS OF COMPROMISE
+----------------------------------------------------------------
+  Network   : 8.8.8.8:1025
+  Files     : .hidden_payload, /etc/passwd
+  Processes : mkdir -p /sandbox/.hidden_payload; ls -la /etc/passwd; ping -c 2 8.8.8.8
+
+PROGRAM OUTPUT
+----------------------------------------------------------------
+  [MALWARE] Execution started...
+  [MALWARE] Attempting to create hidden persistence directory...
+  mkdir: cannot create directory '/sandbox/.hidden_payload': Permission denied
+  [MALWARE] Searching for sensitive files...
+  -rw-r--r-- 1 root root 1111 Apr 18 18:13 /etc/passwd
+  [MALWARE] Attempting to contact external Command & Control server...
+  ping: connect: Network is unreachable
+  [MALWARE] Payload deployed. Exiting with error code to simulate crash.
+
+Heuristic triage only. It is not an antivirus verdict.

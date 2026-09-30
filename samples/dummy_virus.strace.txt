@@ -1,0 +1,95 @@
+execve("/usr/bin/sh", ["sh", "/tmp/payload.sh"], 0x7ffd4afad2d0 /* 20 vars */) = 0
+access("/etc/ld.so.preload", R_OK)      = -1 ENOENT (No such file or directory)
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+newfstatat(AT_FDCWD, "/tmp", {st_mode=S_IFDIR|S_ISVTX|0777, st_size=4096, ...}, 0) = 0
+newfstatat(AT_FDCWD, ".", {st_mode=S_IFDIR|S_ISVTX|0777, st_size=4096, ...}, 0) = 0
+openat(AT_FDCWD, "/tmp/payload.sh", O_RDONLY) = 3
+[MALWARE] Execution started...
+[MALWARE] Attempting to create hidden persistence directory...
+newfstatat(AT_FDCWD, "/usr/local/bin", 0x7ffd700b6fe0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin", 0x7ffd700b6fe0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/root/.local/bin/mkdir", 0x7ffd700b6fe0, 0) = -1 EACCES (Permission denied)
+newfstatat(AT_FDCWD, "/usr/local/sbin/mkdir", 0x7ffd700b6fe0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/mkdir", 0x7ffd700b6fe0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/mkdir", 0x7ffd700b6fe0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/mkdir", {st_mode=S_IFREG|0755, st_size=76296, ...}, 0) = 0
+[pid   196] execve("/usr/bin/mkdir", ["mkdir", "-p", "/sandbox/.hidden_payload"], 0x560dc9a735e0 /* 20 vars */) = 0
+[pid   196] access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+[pid   196] openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+[pid   196] openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libselinux.so.1", O_RDONLY|O_CLOEXEC) = 3
+[pid   196] openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+[pid   196] openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = 3
+[pid   196] statfs("/sys/fs/selinux", {f_type=SYSFS_MAGIC, f_bsize=4096, f_blocks=0, f_bfree=0, f_bavail=0, f_files=0, f_ffree=0, f_fsid={val=[0x4b05ed0a, 0x9d7fd059]}, f_namelen=255, f_frsize=4096, f_flags=ST_VALID|ST_RELATIME}) = 0
+[pid   196] statfs("/selinux", 0x7ffdc09c6380) = -1 ENOENT (No such file or directory)
+[pid   196] openat(AT_FDCWD, "/proc/filesystems", O_RDONLY|O_CLOEXEC) = 3
+[pid   196] openat(AT_FDCWD, "/proc/mounts", O_RDONLY|O_CLOEXEC) = 3
+[pid   196] access("/etc/selinux/config", F_OK) = -1 ENOENT (No such file or directory)
+[pid   196] mkdir("/sandbox", 0777)     = -1 EEXIST (File exists)
+[pid   196] chdir("/sandbox")           = 0
+[pid   196] mkdir(".hidden_payload", 0777) = -1 EACCES (Permission denied)
+[pid   196] newfstatat(AT_FDCWD, ".hidden_payload", 0x7ffdc09c6250, 0) = -1 ENOENT (No such file or directory)
+mkdir: cannot create directory '/sandbox/.hidden_payload': Permission denied
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=196, si_uid=65534, si_status=1, si_utime=0, si_stime=0} ---
+[MALWARE] Searching for sensitive files...
+newfstatat(AT_FDCWD, "/usr/local/bin", 0x7ffd700b6fe0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin", 0x7ffd700b6fe0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/root/.local/bin/ls", 0x7ffd700b6fe0, 0) = -1 EACCES (Permission denied)
+newfstatat(AT_FDCWD, "/usr/local/sbin/ls", 0x7ffd700b6fe0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/ls", 0x7ffd700b6fe0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/ls", 0x7ffd700b6fe0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/ls", {st_mode=S_IFREG|0755, st_size=142312, ...}, 0) = 0
+[pid   197] execve("/usr/bin/ls", ["ls", "-la", "/etc/passwd"], 0x560dc9a735c0 /* 20 vars */) = 0
+[pid   197] access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+[pid   197] openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+[pid   197] openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libselinux.so.1", O_RDONLY|O_CLOEXEC) = 3
+[pid   197] openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+[pid   197] openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libpcre2-8.so.0", O_RDONLY|O_CLOEXEC) = 3
+[pid   197] statfs("/sys/fs/selinux", {f_type=SYSFS_MAGIC, f_bsize=4096, f_blocks=0, f_bfree=0, f_bavail=0, f_files=0, f_ffree=0, f_fsid={val=[0x4b05ed0a, 0x9d7fd059]}, f_namelen=255, f_frsize=4096, f_flags=ST_VALID|ST_RELATIME}) = 0
+[pid   197] statfs("/selinux", 0x7ffd4a46a440) = -1 ENOENT (No such file or directory)
+[pid   197] openat(AT_FDCWD, "/proc/filesystems", O_RDONLY|O_CLOEXEC) = 3
+[pid   197] openat(AT_FDCWD, "/proc/mounts", O_RDONLY|O_CLOEXEC) = 3
+[pid   197] access("/etc/selinux/config", F_OK) = -1 ENOENT (No such file or directory)
+[pid   197] statx(AT_FDCWD, "/etc/passwd", AT_STATX_SYNC_AS_STAT|AT_SYMLINK_NOFOLLOW|AT_NO_AUTOMOUNT, STATX_MODE|STATX_NLINK|STATX_UID|STATX_GID|STATX_MTIME|STATX_SIZE, {stx_mask=STATX_BASIC_STATS|STATX_MNT_ID, stx_attributes=0, stx_mode=S_IFREG|0644, stx_size=1111, ...}) = 0
+[pid   197] lgetxattr("/etc/passwd", "security.selinux", 0x563918dc7cc0, 255) = -1 ENODATA (No data available)
+[pid   197] listxattr("/etc/passwd", "", 152) = 0
+[pid   197] socket(AF_UNIX, SOCK_STREAM|SOCK_CLOEXEC|SOCK_NONBLOCK, 0) = 3
+[pid   197] connect(3, {sa_family=AF_UNIX, sun_path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+[pid   197] socket(AF_UNIX, SOCK_STREAM|SOCK_CLOEXEC|SOCK_NONBLOCK, 0) = 3
+[pid   197] connect(3, {sa_family=AF_UNIX, sun_path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+[pid   197] newfstatat(AT_FDCWD, "/etc/nsswitch.conf", {st_mode=S_IFREG|0644, st_size=494, ...}, 0) = 0
+[pid   197] newfstatat(AT_FDCWD, "/", {st_mode=S_IFDIR|0755, st_size=4096, ...}, 0) = 0
+[pid   197] openat(AT_FDCWD, "/etc/nsswitch.conf", O_RDONLY|O_CLOEXEC) = 3
+[pid   197] openat(AT_FDCWD, "/etc/passwd", O_RDONLY|O_CLOEXEC) = 3
+[pid   197] socket(AF_UNIX, SOCK_STREAM|SOCK_CLOEXEC|SOCK_NONBLOCK, 0) = 3
+[pid   197] connect(3, {sa_family=AF_UNIX, sun_path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+[pid   197] socket(AF_UNIX, SOCK_STREAM|SOCK_CLOEXEC|SOCK_NONBLOCK, 0) = 3
+[pid   197] connect(3, {sa_family=AF_UNIX, sun_path="/var/run/nscd/socket"}, 110) = -1 ENOENT (No such file or directory)
+[pid   197] newfstatat(AT_FDCWD, "/etc/nsswitch.conf", {st_mode=S_IFREG|0644, st_size=494, ...}, 0) = 0
+[pid   197] openat(AT_FDCWD, "/etc/group", O_RDONLY|O_CLOEXEC) = 3
+[pid   197] openat(AT_FDCWD, "/etc/localtime", O_RDONLY|O_CLOEXEC) = 3
+-rw-r--r-- 1 root root 1111 Apr 18 18:13 /etc/passwd
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=197, si_uid=65534, si_status=0, si_utime=0, si_stime=0} ---
+[MALWARE] Attempting to contact external Command & Control server...
+newfstatat(AT_FDCWD, "/usr/local/bin", 0x7ffd700b6fe0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin", 0x7ffd700b6fe0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/root/.local/bin/ping", 0x7ffd700b6fe0, 0) = -1 EACCES (Permission denied)
+newfstatat(AT_FDCWD, "/usr/local/sbin/ping", 0x7ffd700b6fe0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/local/bin/ping", 0x7ffd700b6fe0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/sbin/ping", 0x7ffd700b6fe0, 0) = -1 ENOENT (No such file or directory)
+newfstatat(AT_FDCWD, "/usr/bin/ping", {st_mode=S_IFREG|0755, st_size=89800, ...}, 0) = 0
+[pid   198] execve("/usr/bin/ping", ["ping", "-c", "2", "8.8.8.8"], 0x560dc9a735f8 /* 20 vars */) = 0
+[pid   198] access("/etc/ld.so.preload", R_OK) = -1 ENOENT (No such file or directory)
+[pid   198] openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+[pid   198] openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libcap.so.2", O_RDONLY|O_CLOEXEC) = 3
+[pid   198] openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libidn2.so.0", O_RDONLY|O_CLOEXEC) = 3
+[pid   198] openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+[pid   198] openat(AT_FDCWD, "/lib/x86_64-linux-gnu/libunistring.so.5", O_RDONLY|O_CLOEXEC) = 3
+[pid   198] socket(AF_INET, SOCK_DGRAM, IPPROTO_ICMP) = -1 EACCES (Permission denied)
+[pid   198] socket(AF_INET, SOCK_RAW, IPPROTO_ICMP) = 3
+[pid   198] socket(AF_INET6, SOCK_DGRAM, IPPROTO_ICMPV6) = -1 EAFNOSUPPORT (Address family not supported by protocol)
+[pid   198] socket(AF_INET, SOCK_DGRAM, IPPROTO_IP) = 4
+[pid   198] connect(4, {sa_family=AF_INET, sin_port=htons(1025), sin_addr=inet_addr("8.8.8.8")}, 16) = -1 ENETUNREACH (Network is unreachable)
+ping: connect: Network is unreachable
+--- SIGCHLD {si_signo=SIGCHLD, si_code=CLD_EXITED, si_pid=198, si_uid=65534, si_status=2, si_utime=0, si_stime=0} ---
+[MALWARE] Payload deployed. Exiting with error code to simulate crash.
